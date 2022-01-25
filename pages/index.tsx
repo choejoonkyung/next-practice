@@ -1,11 +1,15 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import Cookie from "../utils/Cookie";
 
 function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const router = useRouter();
+
   const logout = () => {
     Cookie.remove("auth");
+    router.replace("/");
   };
 
   return (
