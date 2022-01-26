@@ -1,24 +1,19 @@
-class Cookie {
-  static create(name: string, value: string, days = 1) {
-    const expires = new Date(
-      Date.now() + days * 24 * 60 * 60 * 1000
-    ).toUTCString();
+import Cookies, { CookieAttributes } from "js-cookie";
 
-    document.cookie = `${name}=${value}; ${
-      days ? ` expires=${expires};` : ""
-    } path=/`;
+class Cookie {
+  static create(name: string, value: string, opt?: CookieAttributes, days = 1) {
+    Cookies.set(name, value, {
+      ...opt,
+      expires: days,
+    });
   }
 
   static remove(name: string) {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    Cookies.remove(name);
   }
 
   static read(name: string) {
-    const results = document.cookie.match(
-      "(^|;) ?" + name + "=([^;]*)(;|$)"
-    ) as RegExpMatchArray;
-
-    return results[2] ?? "";
+    return Cookies.get(name);
   }
 }
 

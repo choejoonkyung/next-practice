@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { IncomingMessage } from "http";
 import { NextPageContext } from "next";
 import { NextApiRequestCookies } from "next/dist/server/api-utils";
+import Cookie from "../Cookie";
 
 export default class Service {
   private static token: string;
@@ -21,7 +22,7 @@ export default class Service {
   static setReqInterceptor() {
     this.instance.interceptors.request.use((reqConfig) => {
       if (reqConfig.headers && this.token) {
-        reqConfig.headers["Authentication"] = this.token;
+        reqConfig.headers["authentication"] = this.token;
       }
       return reqConfig;
     });
@@ -31,7 +32,7 @@ export default class Service {
     this.instance.interceptors.response.use((res) => {
       const refresh = res.headers["x-refresh-token"]!;
       if (refresh) {
-        console.log("!!");
+        console.log(refresh);
         ctx.res?.setHeader("set-cookie", "auth=" + refresh);
       }
       return res;
