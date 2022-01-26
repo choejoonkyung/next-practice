@@ -22,15 +22,6 @@ function login(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  if (ctx.req.cookies.auth) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
   return { props: { data: "data" } };
 };
 

@@ -16,11 +16,18 @@ function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     <div className={styles.container}>
       {props.auth ? (
         <>
-          <p>{props.user}님</p>
+          <div>
+            <span>토큰: {props.token}</span>
+            <button>
+              <Link href="/info">info</Link>
+            </button>
+          </div>
           <button onClick={logout}>logout</button>
         </>
       ) : (
-        <Link href="/login">login</Link>
+        <button>
+          <Link href="/login">login</Link>
+        </button>
       )}
     </div>
   );
@@ -30,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       auth: ctx.req.cookies.auth ? true : false,
-      user: ctx.req.cookies.auth ?? "",
+      token: ctx.req.cookies.auth ?? "",
     },
   };
 };
