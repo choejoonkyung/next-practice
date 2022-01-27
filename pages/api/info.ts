@@ -10,7 +10,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const token = req.headers.authentication as string;
+  const token = req.headers?.authentication as string;
 
   if (!token) {
     res.status(403).json({ success: false });

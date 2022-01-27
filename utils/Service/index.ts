@@ -1,8 +1,11 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import { IncomingMessage } from "http";
-import { NextPageContext } from "next";
+import axios, { AxiosInstance } from "axios";
+import { IncomingMessage, ServerResponse } from "http";
+import { GetServerSidePropsContext, NextPageContext } from "next";
 import { NextApiRequestCookies } from "next/dist/server/api-utils";
-import Cookie from "../Cookie";
+
+type CtxReq = IncomingMessage & {
+  cookies: NextApiRequestCookies;
+};
 
 export default class Service {
   private static token: string;
@@ -12,38 +15,36 @@ export default class Service {
     return this.token;
   }
 
-  static setToken(ctx: NextPageContext) {
-    const req = ctx.req as IncomingMessage & {
-      cookies: NextApiRequestCookies;
-    };
+  static setToken(req: CtxReq) {
     this.token = req.cookies.auth;
   }
 
-  static setReqInterceptor() {
+  static setReqInterceptor(req: CtxReq) {
+    this.setToken(req);
+
     this.instance.interceptors.request.use((reqConfig) => {
       if (reqConfig.headers && this.token) {
         reqConfig.headers["authentication"] = this.token;
       }
+      console.log(reqConfig);
       return reqConfig;
     });
   }
 
-  static setResInterceptor(ctx: NextPageContext) {
+  static setResInterceptor(ctxRes: ServerResponse) {
     this.instance.interceptors.response.use((res) => {
       const refresh = res.headers["x-refresh-token"]!;
       if (refresh) {
-        console.log(refresh);
-        ctx.res?.setHeader("set-cookie", "auth=" + refresh);
+        ctxRes?.setHeader("set-cookie", "auth=" + refresh);
       }
       return res;
     });
   }
 
-  static setInstance() {
+  static getInstance(ctx: GetServerSidePropsContext) {
     this.instance = axios.create({});
-  }
-
-  static getInstance() {
+    this.setReqInterceptor(ctx.req);
+    this.setResInterceptor(ctx.res);
     return this.instance;
   }
 }

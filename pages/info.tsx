@@ -6,7 +6,8 @@ function info(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const data = await InfoService.get();
+  const data = await InfoService.get(ctx);
+
   return {
     props: {},
   };
