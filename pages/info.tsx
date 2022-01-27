@@ -1,5 +1,5 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import InfoService from "../utils/Service/InfoService";
+import InfoService from "../src/utils/Service/InfoService";
 
 function info(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return <div></div>;

@@ -26,7 +26,6 @@ export default class Service {
       if (reqConfig.headers && this.token) {
         reqConfig.headers["authentication"] = this.token;
       }
-      console.log(reqConfig);
       return reqConfig;
     });
   }

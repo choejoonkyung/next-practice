@@ -8,6 +8,5 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   res.status(400).json({ description: "서버 오류!" });
-
   res.status(200).json({ name: "John Doe", name2: "John Doe" });
 }

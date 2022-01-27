@@ -1,7 +1,7 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Cookie from "../utils/Cookie";
+import Cookie from "../src/utils/Cookie";
 
 function login(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [id, setId] = useState("");

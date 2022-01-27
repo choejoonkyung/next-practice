@@ -7,7 +7,6 @@ function Swr(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <p>결과</p>
-
       <AsyncBoundary
         ErrorFallback={(props) => <ErrorView {...props} />}
         SuspenseFallback={<div>loading</div>}
