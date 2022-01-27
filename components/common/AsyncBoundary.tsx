@@ -1,8 +1,9 @@
-import React, { ReactNode, Suspense, SuspenseProps } from "react";
+import React, { ReactNode, SuspenseProps } from "react";
 import {
   ErrorBoundary,
   ErrorBoundaryPropsWithRender,
 } from "react-error-boundary";
+import SSRSafeSuspense from "./SSRSafeSuspense";
 
 type ExceptFallbackErrorBoundaryAttributes = Omit<
   ErrorBoundaryPropsWithRender,
@@ -26,7 +27,7 @@ function AsyncBoundary({
       fallbackRender={ErrorFallback}
       {...restErrorBoundaryAttributes}
     >
-      <Suspense fallback={SuspenseFallback}>{children}</Suspense>
+      <SSRSafeSuspense fallback={SuspenseFallback}>{children}</SSRSafeSuspense>
     </ErrorBoundary>
   );
 }
