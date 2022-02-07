@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
-import AsyncBoundary from "../components/common/AsyncBoundary";
-import ErrorView from "../components/ErrorView";
-import View from "../components/View";
+import AsyncBoundary from "../src/components/common/AsyncBoundary";
+import ErrorView from "../src/components/ErrorView";
+import View from "../src/components/View";
 
 function Swr(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
