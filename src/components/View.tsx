@@ -1,14 +1,7 @@
-import axios from "axios";
-import useSWR from "swr";
+import React from "react";
 
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-
-function View() {
-  const { data } = useSWR("/api/swr", fetcher, {
-    suspense: true,
-  });
-
-  return <>{data.name}</>;
+function View({ id }: { id: string }) {
+  return <p>{id}</p>;
 }
 
-export default View;
+export default React.memo(View);
