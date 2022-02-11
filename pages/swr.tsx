@@ -1,5 +1,5 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
-import AsyncBoundary from "../src/components/common/AsyncBoundary";
+import AsyncBoundary from "../src/components/utils/AsyncBoundary";
 import ErrorView from "../src/components/ErrorView";
 import View from "../src/components/View";
 
