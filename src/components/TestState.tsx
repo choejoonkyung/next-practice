@@ -6,7 +6,7 @@ function TestState({ theme }: { theme: string }) {
   return (
     <>
       <p>{theme}</p>
-      <button onClick={actions?.toLightTheme}>light 테마로 변경</button>
+      <button onClick={actions.toLightTheme}>light 테마로 변경</button>
     </>
   );
 }

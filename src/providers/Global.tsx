@@ -22,7 +22,7 @@ const initializer = (): GlobalState => ({
   id: "null",
 });
 
-const generateAction = (
+const generateActions = (
   update: (recipe: (draft: GlobalState) => void) => void
 ) => {
   const toLightTheme = useCallback(() => {
@@ -36,30 +36,39 @@ const generateAction = (
   };
 };
 
-interface GlobalStateContext {
+type GlobalStateActions = typeof generateActions extends (
+  ...args: any[]
+) => infer R
+  ? R
+  : never;
+
+interface GlobalStateContextValue {
   state: GlobalState;
-  actions?: typeof generateAction extends (...args: any[]) => infer R
-    ? R
-    : never;
+  actions: GlobalStateActions;
 }
 
-export const GlobalState = createContext<GlobalStateContext>({
+export const GlobalStateContext = createContext<GlobalStateContextValue>({
   state: initializer(),
+  actions: {} as GlobalStateActions,
 });
 
-export function GlobalStateProvider({ children }: GlobalStateProps) {
-  const [state, setState] = useState<GlobalStateContext["state"]>(initializer);
+export const GlobalStateProvider = ({ children }: GlobalStateProps) => {
+  const [state, setState] = useState<GlobalState>(initializer);
   const update = (recipe: (draft: GlobalState) => void) =>
     setState((prev) => produce(prev, recipe));
-  const actions = generateAction(update);
+  const actions = generateActions(update);
 
-  const value = useMemo((): GlobalStateContext => {
+  const value = useMemo((): GlobalStateContextValue => {
     return { state, actions };
   }, [state]);
 
-  return <GlobalState.Provider value={value}>{children}</GlobalState.Provider>;
-}
+  return (
+    <GlobalStateContext.Provider value={value}>
+      {children}
+    </GlobalStateContext.Provider>
+  );
+};
 
 export function useGlobalState() {
-  return useContext(GlobalState);
+  return useContext(GlobalStateContext);
 }
