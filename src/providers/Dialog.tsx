@@ -1,4 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
+import { Portal } from "../components/utils/Portal";
 import { useLockBodyScroll } from "../hooks/useBodyScroll";
 import { PortalConsumer } from "./Portal";
 
@@ -42,7 +43,7 @@ export function DialogProvider({ children }: DialogContextProps) {
       }}
     >
       {children}
-      {isOpen ? <PortalConsumer>{node}</PortalConsumer> : null}
+      {isOpen ? <Portal>{node}</Portal> : null}
     </DialogContext.Provider>
   );
 }
