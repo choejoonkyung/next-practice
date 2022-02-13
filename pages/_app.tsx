@@ -7,11 +7,9 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <GlobalStateProvider>
-      <PortalProvider>
-        <DialogProvider>
-          <Component {...pageProps} />
-        </DialogProvider>
-      </PortalProvider>
+      <DialogProvider>
+        <Component {...pageProps} />
+      </DialogProvider>
     </GlobalStateProvider>
   );
 }

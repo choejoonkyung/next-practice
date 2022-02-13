@@ -1,7 +1,13 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { Portal } from "../components/utils/Portal";
 import { useLockBodyScroll } from "../hooks/useBodyScroll";
-import { PortalConsumer } from "./Portal";
 
 interface DialogContextProps {
   children: ReactNode;
@@ -24,24 +30,26 @@ export function DialogProvider({ children }: DialogContextProps) {
   const [node, setNode] = useState<ReactNode>(null);
   useLockBodyScroll(isOpen);
 
-  const openDialog = ({ node }: { node: ReactNode }) => {
-    setIsOpen(true);
+  const openDialog = useCallback(({ node }: { node: ReactNode }) => {
     setNode(node);
-  };
+    setIsOpen(true);
+  }, []);
 
-  const closeDialog = () => {
-    setIsOpen(false);
+  const closeDialog = useCallback(() => {
     setNode(null);
-  };
+    setIsOpen(false);
+  }, []);
+
+  const value = useMemo((): DialogContextValue => {
+    return {
+      open: isOpen,
+      openDialog,
+      closeDialog,
+    };
+  }, [isOpen]);
 
   return (
-    <DialogContext.Provider
-      value={{
-        open: isOpen,
-        openDialog,
-        closeDialog,
-      }}
-    >
+    <DialogContext.Provider value={value}>
       {children}
       {isOpen ? <Portal>{node}</Portal> : null}
     </DialogContext.Provider>

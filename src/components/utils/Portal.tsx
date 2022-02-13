@@ -8,6 +8,7 @@ export function Portal({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
     elementRef.current = document.createElement("div");
+    elementRef.current.id = "portal";
     document.body.appendChild(elementRef.current);
     return () => {
       if (elementRef.current != null) {
@@ -20,5 +21,5 @@ export function Portal({ children }: { children: ReactNode }) {
     return null;
   }
 
-  return createPortal(<div>{children}</div>, elementRef.current);
+  return createPortal(children, elementRef.current);
 }
