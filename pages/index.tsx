@@ -3,9 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import Cookie from "../src/utils/Cookie";
+import { useGlobalState } from "../src/providers/Global";
 
 function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  const { state } = useGlobalState();
 
   const logout = () => {
     Cookie.remove("auth");
@@ -14,6 +16,7 @@ function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
     <div className={styles.container}>
+      <nav>{state.user ? <p>내정보</p> : <p>로그인</p>}</nav>
       {props.auth ? (
         <>
           <div>

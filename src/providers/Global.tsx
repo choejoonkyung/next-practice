@@ -10,16 +10,19 @@ import {
 
 interface GlobalStateProps {
   children: ReactNode;
+  token?: string;
 }
 
 interface GlobalState {
   theme: "light" | "dark";
   id: string;
+  user: string | null;
 }
 
-const initializer = (): GlobalState => ({
+const initializer = (token?: string): GlobalState => ({
   theme: "dark",
   id: "null",
+  user: token ?? null,
 });
 
 const generateActions = (
@@ -52,8 +55,8 @@ export const GlobalStateContext = createContext<GlobalStateContextValue>({
   actions: {} as GlobalStateActions,
 });
 
-export const GlobalStateProvider = ({ children }: GlobalStateProps) => {
-  const [state, setState] = useState<GlobalState>(initializer);
+export const GlobalStateProvider = ({ children, token }: GlobalStateProps) => {
+  const [state, setState] = useState<GlobalState>(() => initializer(token));
   const update = (recipe: (draft: GlobalState) => void) =>
     setState((prev) => produce(prev, recipe));
   const actions = generateActions(update);
