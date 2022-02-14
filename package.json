@@ -8,6 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "axios": "^0.25.0",
     "immer": "^9.0.12",
     "js-cookie": "^3.0.1",

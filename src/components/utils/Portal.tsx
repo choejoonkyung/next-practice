@@ -3,23 +3,23 @@ import { createPortal } from "react-dom";
 
 export function Portal({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
-  const elementRef = useRef<HTMLDivElement | null>(null);
+  const portalEle = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
-    elementRef.current = document.createElement("div");
-    elementRef.current.id = "portal";
-    document.body.appendChild(elementRef.current);
+    portalEle.current = document.createElement("div");
+    portalEle.current.id = "portal";
+    document.body.appendChild(portalEle.current);
     return () => {
-      if (elementRef.current != null) {
-        document.body.removeChild(elementRef.current);
+      if (portalEle.current != null) {
+        document.body.removeChild(portalEle.current);
       }
     };
   }, []);
 
-  if (!mounted || elementRef.current == null) {
+  if (!mounted || portalEle.current == null) {
     return null;
   }
 
-  return createPortal(children, elementRef.current);
+  return createPortal(children, portalEle.current);
 }
