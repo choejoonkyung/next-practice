@@ -14,23 +14,19 @@ const fetcher = (url: string) =>
     .catch((e) => console.log(e));
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const article = await fetcher("http://localhost:3000/api/mock");
+  // const article = await fetcher("http://localhost:3000/api/mock");
   return {
-    props: {
-      fallback: {
-        "/api/mock": article,
-      },
-    },
+    props: {},
   };
 };
 
 function Article() {
   // `data`는 `fallback`에 있기 때문에 항상 사용할 수 있습니다.
-  const { data } = useSWR<Data[]>("/api/mock", fetcher);
+  // const { data } = useSWR<Data[]>("/api/mock", fetcher);
   return (
     <>
-      {data!.map((v, i) => (
-        <p key={i}>{v.lastName}</p>
+      {[]!.map((v, i) => (
+        <p key={i}>{}</p>
       ))}
     </>
   );
