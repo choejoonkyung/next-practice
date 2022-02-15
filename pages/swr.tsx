@@ -11,7 +11,7 @@ function Swr(props: InferGetStaticPropsType<typeof getStaticProps>) {
         ErrorFallback={(props) => <ErrorView {...props} />}
         SuspenseFallback={<div>loading</div>}
       >
-        <View />
+        <View id="" />
       </AsyncBoundary>
     </div>
   );

@@ -26,7 +26,7 @@ function InterSectionObserve({
     if (inView) {
       cb();
     }
-  }, [inView]);
+  }, [inView, cb]);
 
   return React.cloneElement(children, {
     ref,

@@ -11,7 +11,7 @@ function ErrorView(props: FallbackProps) {
       setCode(props.error.response.status);
       setDesc(props.error.response.data.description);
     }
-  }, []);
+  }, [props.error]);
 
   return (
     <div role="alert">

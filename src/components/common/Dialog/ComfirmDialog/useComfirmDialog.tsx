@@ -15,7 +15,7 @@ const useComfirmDialog = () => {
         </DialogWrapper>
       ),
     });
-  }, [openDialog]);
+  }, [openDialog, closeDialog]);
 
   return useMemo(
     () => ({

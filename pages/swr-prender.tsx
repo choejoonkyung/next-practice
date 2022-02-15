@@ -29,8 +29,8 @@ function Article() {
   const { data } = useSWR<Data[]>("/api/mock", fetcher);
   return (
     <>
-      {data!.map((v) => (
-        <p>{v.lastName}</p>
+      {data!.map((v, i) => (
+        <p key={i}>{v.lastName}</p>
       ))}
     </>
   );

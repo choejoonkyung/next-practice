@@ -41,7 +41,6 @@ export const DialogContext = createContext<DialogContextValue>({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
 
 function DialogProvider({ children }: Props) {
