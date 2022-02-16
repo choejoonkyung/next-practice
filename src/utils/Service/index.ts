@@ -37,13 +37,17 @@ export default class Service {
         ctxRes?.setHeader("set-cookie", "auth=" + refresh);
       }
       return res;
-    });
+    }, this.errorHandler);
   }
 
-  static getInstance(ctx: GetServerSidePropsContext) {
+  static errorHandler() {}
+
+  static getInstance(ctx?: GetServerSidePropsContext) {
     this.instance = axios.create({});
-    this.setReqInterceptor(ctx.req);
-    this.setResInterceptor(ctx.res);
+    if (ctx) {
+      this.setReqInterceptor(ctx.req);
+      this.setResInterceptor(ctx.res);
+    }
     return this.instance;
   }
 }

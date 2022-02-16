@@ -1,9 +1,4 @@
-import React, {
-  JSXElementConstructor,
-  ReactElement,
-  useEffect,
-  useRef,
-} from "react";
+import React, { JSXElementConstructor, ReactElement, useEffect } from "react";
 import { IntersectionOptions, useInView } from "react-intersection-observer";
 
 interface InterSectionObserveProps {
