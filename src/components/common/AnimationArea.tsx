@@ -30,7 +30,6 @@ interface AnimationProps extends AnimationAreaProps {
 
 const Animation = styled.div(
   ({ trigger, distance, duration }: AnimationProps) => `
-  background: black;
   transition: transform ${duration}ms ease 0s, opacity ${duration}ms ease 0s;
   opacity: ${trigger ? 1 : 0};
   transform: translate3d(0px, ${trigger ? 0 : distance}px, 0px);

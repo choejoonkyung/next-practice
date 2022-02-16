@@ -10,13 +10,57 @@ function IOPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
         <Test>테스트</Test>
       </AnimationArea>
       <AnimationArea distance={40} duration={1000}>
-        h
-      </AnimationArea>
-      <AnimationArea distance={40} duration={1000}>
-        h
-      </AnimationArea>
-      <AnimationArea distance={40} duration={1000}>
         <Test>테스트</Test>
+      </AnimationArea>
+
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
+      </AnimationArea>
+      <AnimationArea distance={40} duration={1000}>
+        <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />
       </AnimationArea>
 
       <AccordionMenuItem title="상품안내" descNode={<div>설명</div>} />

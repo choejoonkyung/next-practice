@@ -3,6 +3,8 @@ import { IncomingMessage, ServerResponse } from "http";
 import { GetServerSidePropsContext, NextPageContext } from "next";
 import { NextApiRequestCookies } from "next/dist/server/api-utils";
 
+const BASE_URL = "http://localhost:3000";
+
 type CtxReq = IncomingMessage & {
   cookies: NextApiRequestCookies;
 };
@@ -42,12 +44,11 @@ export default class Service {
 
   static errorHandler() {}
 
-  static getInstance(ctx?: GetServerSidePropsContext) {
-    this.instance = axios.create({});
-    if (ctx) {
-      this.setReqInterceptor(ctx.req);
-      this.setResInterceptor(ctx.res);
-    }
+  static getInstance() {
+    this.instance = axios.create({
+      baseURL: BASE_URL,
+      timeout: 3000,
+    });
     return this.instance;
   }
 }
