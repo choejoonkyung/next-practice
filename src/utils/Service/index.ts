@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { GetServerSidePropsContext, NextPageContext } from "next";
 import { NextApiRequestCookies } from "next/dist/server/api-utils";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://jsonplaceholder.typicode.com";
 
 type CtxReq = IncomingMessage & {
   cookies: NextApiRequestCookies;
