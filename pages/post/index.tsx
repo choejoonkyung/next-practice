@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import React from "react";
-import Service from "../src/utils/Service";
+import Service from "../../src/utils/Service";
 
 interface Post {
   userId: number;

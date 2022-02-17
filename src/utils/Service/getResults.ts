@@ -1,5 +1,8 @@
 import Service from ".";
-import { AutoCompleteData } from "../../../pages/api/autocomplete";
+
+interface AutoCompleteData {
+  results: any[];
+}
 
 export async function getResults(query: string) {
   const { data } = await Service.getInstance().get<AutoCompleteData>(

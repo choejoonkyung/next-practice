@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
-import Service from "../../../src/utils/Service";
+import Service from "../../src/utils/Service";
 
 interface Post {
   userId: number;
@@ -11,10 +11,18 @@ interface Post {
 }
 
 function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
+
   return (
     <section>
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
+      {router.isFallback ? (
+        <p>loading...</p>
+      ) : (
+        <>
+          <h2>{post?.title}</h2>
+          <p>{post?.body}</p>
+        </>
+      )}
     </section>
   );
 }
@@ -22,9 +30,7 @@ function PostPage({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
 export const getStaticProps: GetStaticProps<{ post: Post }> = async (ctx) => {
   const { id } = ctx.params!;
   const { data } = await Service.getInstance().get<Post>(`/posts/${id}`);
-  console.log(data);
-
-  return { props: { post: data } };
+  return { props: { post: data }, revalidate: 20 };
 };
 
 export async function getStaticPaths() {
@@ -36,8 +42,6 @@ export async function getStaticPaths() {
       },
     };
   });
-
-  console.log(paths);
 
   return {
     paths,
